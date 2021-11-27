@@ -482,7 +482,3 @@ In order to store the logo in [Sia](https://sia.tech) decentralized storage, we 
 
 I'm mlibre, a random guy from the solar galaxy. I am interested in blockchain tech and find it very useful for lots of things. Feel free to check my [Github](https://github.com/mlibre)
 
-## Donate 💗
-
-ETH:
-> 0xc9b64496986E7b6D4A68fDF69eF132A35e91838e
