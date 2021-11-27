@@ -13,7 +13,8 @@ trait FungibleToken {
 #[near_bindgen]
 #[derive(Default, BorshDeserialize, BorshSerialize)]
 pub struct Exchange {
-    token_address: AccountId
+    token_address: AccountId,
+    logo_url: String
 }
 
 #[near_bindgen]
@@ -23,7 +24,8 @@ impl Exchange {
         assert!(!env::state_exists(), "Already initialized");
         assert!(&env::signer_account_id() == &env::current_account_id(), "Owner's method");
         Self {
-            token_address: _token_address
+            token_address: _token_address,
+            logo_url: "".to_string()
         }
     }
 
@@ -51,5 +53,14 @@ impl Exchange {
     pub fn set_token_address(&mut self, _token_address: AccountId) {
         assert!(&env::signer_account_id() == &env::current_account_id(), "Owner's method");
         self.token_address = _token_address
+    }
+
+    pub fn set_logo_url(&mut self, url: String) {
+        assert!(&env::signer_account_id() == &env::current_account_id(), "Owner's method");
+        self.logo_url = url
+    }
+
+    pub fn get_logo_url(self) -> String {
+        self.logo_url
     }
 }

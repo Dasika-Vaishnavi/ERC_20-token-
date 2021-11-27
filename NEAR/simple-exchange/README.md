@@ -2,7 +2,7 @@
 
 In this tutorial, we will go through the process of building a token swap exchange on the `NEAR` blockchain.  
 We start by writing **Token** and **Exchange** smart contracts in `Rust` and deploying the contracts on the `NEAR` testnet chain using `near-cli`.  
-Then we make a simple **Web UI** to interact with the **Exchange**, using the `near-sdk-js` library. Our DApp has a **logo** for itself! We will store this logo in a decentralized storage called `Sia`.  
+Then we make a simple **Web UI** to interact with the **Exchange**, using the `near-sdk-js` library. Our DApp has a **logo** for itself! We will store this logo in a decentralized storage called `Sia` using their `skynet-js` library.  
 Finally, we host our DApp on `Skynet`.
 
 ## Table of Contents
@@ -33,6 +33,7 @@ We will use the following technologies:
 - [**React**](https://reactjs.org/) v17.0.1 or higher installed
 - [**near-api-js**](https://www.rust-lang.org/) v0.43.1 or higher installed
 - [**parcel**](https://parceljs.org/) v2 or higher installed
+- [**skynet-js**](https://siasky.net/docs/#introduction) v4 or higher installed
 
 ## Setting up near-cli
 
@@ -83,6 +84,8 @@ rustup target add wasm32-unknown-unknown
 1. First, we write a fungible token (FT) named `MLB1` in rust, and will deploy it on the chain. We use it as the `near-token` swap pair.
 2. We write an **Exchange Contract** that will handle the swap functionality. Each `token-near` pair, one exchange contract.
 3. We make a simple `Web UI` to interact with the **Exchange Contract**, using `near-sdk-js` and `React` libraries.
+4. We add `skynet-js` to our app, in order to store the logo in Sia.
+5. We host our DApp on `Skynet`.
 
 ## MLB1 contract
 
@@ -196,7 +199,8 @@ trait FungibleToken {
 #[near_bindgen]
 #[derive(Default, BorshDeserialize, BorshSerialize)]
 pub struct Exchange {
-    token_address: AccountId
+    token_address: AccountId,
+    logo_url: String
 }
 
 #[near_bindgen]
@@ -206,7 +210,8 @@ impl Exchange {
         assert!(!env::state_exists(), "Already initialized");
         assert!(&env::signer_account_id() == &env::current_account_id(), "Owner's method");
         Self {
-            token_address: _token_address
+            token_address: _token_address,
+            logo_url: "".to_string()
         }
     }
 
@@ -234,6 +239,15 @@ impl Exchange {
     pub fn set_token_address(&mut self, _token_address: AccountId) {
         assert!(&env::signer_account_id() == &env::current_account_id(), "Owner's method");
         self.token_address = _token_address
+    }
+
+    pub fn set_logo_url(&mut self, url: String) {
+        assert!(&env::signer_account_id() == &env::current_account_id(), "Owner's method");
+        self.logo_url = url
+    }
+
+    pub fn get_logo_url(self) -> String {
+        self.logo_url
     }
 }
 ```
@@ -447,6 +461,14 @@ parcel src/index.html --open
 ![web-ui](./web-ui.png)
 
 You can find the source codes [here](https://github.com/mlibre/blockchain/tree/master/NEAR/simple-exchange)
+
+## Storing Logo
+
+In order to store the logo in [Sia](https://sia.tech) decentralized storage, we should use `skynet-js` library. After uploading the logo, we can use the `set_logo_url` method to store the logo url in the exchange contract.
+
+```bash
+
+```
 
 ## Hosting On Skynet
 
