@@ -1,0 +1,19 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"type": "chrome",
+			"request": "launch",
+			"name": "Debug React, TS, Parcel app in Chrome",
+			"url": "http://localhost:1234/",
+			"webRoot": "${workspaceFolder}/NEAR/simple-exchange/web-ui/",
+			"pathMapping": {
+				"__parcel_source_root": "${workspaceFolder}/NEAR/simple-exchange/web-ui/"
+			},
+			"skipFiles": [
+				"${workspaceFolder}/NEAR/simple-exchange/web-ui/node_modules/**/*.js",
+				"<node_internals>/**/*.js"
+			]
+		}
+	]
+}
