@@ -3,6 +3,7 @@
 In this tutorial, we will go through the process of building a token swap exchange on the `NEAR` blockchain.  
 We start by writing **Token** and **Exchange** smart contracts in `Rust` and deploying the contracts on the `NEAR` testnet chain using `near-cli`.  
 Then we make a simple **Web UI** to interact with the **Exchange**, using the `near-sdk-js` library.  
+Our simple DApp has a logo for itself! We will store this logo in a decentralized storage called `Sia`.  
 Finally, we host our DApp on `Skynet`.
 
 ## Table of Contents
