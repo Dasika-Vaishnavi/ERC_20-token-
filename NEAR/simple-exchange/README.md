@@ -480,3 +480,6 @@ I'm mlibre, a random guy from the solar galaxy. I am interested in blockchain te
 
 ETH:
 > 0xc9b64496986E7b6D4A68fDF69eF132A35e91838e
+
+NEAR:
+> mlibre.near
