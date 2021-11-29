@@ -2,7 +2,7 @@
 
 In this tutorial, we will go through the process of building a token swap exchange on the `NEAR` blockchain.  
 We start by writing **Token** and **Exchange** smart contracts in `Rust` and deploying the contracts on the `NEAR` testnet chain using `near-cli`.  
-Then we make a simple **Web UI** to interact with the **Exchange**, using the `near-sdk-js` library. Our DApp has a **logo** for itself! We will store this logo in a decentralized storage called `Sia` using their `skynet-js` library.  
+Then we make a simple **Web UI** to interact with the **Exchange**, using the `near-sdk-js` library.  
 Finally, we host our DApp on `Skynet`.
 
 ## Table of Contents
@@ -16,11 +16,13 @@ Finally, we host our DApp on `Skynet`.
   - [Building MLB1 contract](#building-mlb1-contract)
   - [Deploying MLB1 contract](#deploying-mlb1-contract)
 - [Exchange contract](#exchange-contract)
+  - [Deploying the contract](#deploying-the-contract)
+  - [Swap near to token](#swap-near-to-token)
 - [Web UI](#web-ui)
 - [Hosting On Skynet](#hosting-on-skynet)
 - [References](#references)
 - [About The Author](#about-the-author)
-- [Donate 💗](#donate-)
+- [Donations](#donations)
 
 ## Requirements
 
@@ -33,7 +35,6 @@ We will use the following technologies:
 - [**React**](https://reactjs.org/) v17.0.1 or higher installed
 - [**near-api-js**](https://www.rust-lang.org/) v0.43.1 or higher installed
 - [**parcel**](https://parceljs.org/) v2 or higher installed
-- [**skynet-js**](https://siasky.net/docs/#introduction) v4 or higher installed
 
 ## Setting up near-cli
 
@@ -84,8 +85,7 @@ rustup target add wasm32-unknown-unknown
 1. First, we write a fungible token (FT) named `MLB1` in rust, and will deploy it on the chain. We use it as the `near-token` swap pair.
 2. We write an **Exchange Contract** that will handle the swap functionality. Each `token-near` pair, one exchange contract.
 3. We make a simple `Web UI` to interact with the **Exchange Contract**, using `near-sdk-js` and `React` libraries.
-4. We add `skynet-js` to our app, in order to store the logo in Sia.
-5. We host our DApp on `Skynet`.
+4. We host our DApp on `Skynet`.
 
 ## MLB1 contract
 
@@ -462,15 +462,9 @@ parcel src/index.html --open
 
 You can find the source codes [here](https://github.com/mlibre/blockchain/tree/master/NEAR/simple-exchange)
 
-## Storing Logo
-
-In order to store the logo in [Sia](https://sia.tech) decentralized storage, we should use `skynet-js` library. After uploading the logo, we can use the `set_logo_url` method to store the logo url in the exchange contract.
-
-```bash
-
-```
-
 ## Hosting On Skynet
+
+After running dapp using `parcel src/index.html --open`, copy the dist folder and upload it on [Skynet](https://siasky.net/).
 
 ## References
 
@@ -482,3 +476,7 @@ In order to store the logo in [Sia](https://sia.tech) decentralized storage, we 
 
 I'm mlibre, a random guy from the solar galaxy. I am interested in blockchain tech and find it very useful for lots of things. Feel free to check my [Github](https://github.com/mlibre)
 
+## Donations
+
+ETH:
+> 0xc9b64496986E7b6D4A68fDF69eF132A35e91838e
